@@ -28,7 +28,7 @@
 bash <(curl -L https://gitee.com/TimeRainStarSky/TRSS_Zhenxun/raw/main/Install.sh)
 ```
 
-3. 启动：`tsly`
+3. 启动：`tszx`
 
 视频教程：<https://bilibili.com/av983453309>
 
