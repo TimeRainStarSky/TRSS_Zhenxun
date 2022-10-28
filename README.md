@@ -39,7 +39,7 @@ bash <(curl -L https://gitee.com/TimeRainStarSky/TRSS_Zhenxun/raw/main/Install.s
 举例：将脚本安装至 `/Bot` 启动命令 `trss`
 
 ```
-DIR=/Bot CMD=trss bash xxx
+DIR=/Bot CMD=trss bash <(x
 ```
 
 </details>
