@@ -113,7 +113,7 @@ RUN pacman -Syu --noconfirm --needed --overwrite "*" postgresql nginx\
  && rm -rf /var/cache
 RUN echo -n '\''bash /root/TRSS_Zhenxun/Main.sh "$@"'\''>/usr/local/bin/tszx\
  && chmod 755 /usr/local/bin/tszx
-EXPOSE 80'>Dockerfile
+EXPOSE 80 8080'>Dockerfile
 docker build -t trss:zhenxun .||abort "Docker 容器构建失败"
 docker image prune -f
 echo "
