@@ -46,7 +46,7 @@ download(){ case "$N" in
   8)SERVER="JiHuLab";URL="https://jihulab.com/TimeRainStarSky/TRSS_Zhenxun/raw/main";;
   9)SERVER="Jsdelivr";URL="https://cdn.jsdelivr.net/gh/TimeRainStarSky/TRSS_Zhenxun@main";;
   10)SERVER="Bitbucket";URL="https://bitbucket.org/TimeRainStarSky/TRSS_Zhenxun/raw/main"
-esac,
+esac
 echo "
   正在从 $SERVER 服务器 下载版本信息"
 GETVER="$(geturl "$URL/version")"||abort_update "下载失败"
