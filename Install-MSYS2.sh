@@ -84,6 +84,17 @@ $Y- 正在安装 Poetry$O
 pip install -U poetry&&\
 echo -n 'exec python -m poetry "$@"'>/usr/bin/poetry||abort "安装失败";}
 
+type nginx &>/dev/null||{ echo "
+$Y- 正在安装 Nginx$O
+"
+mktmp
+GETVER="$(geturl "https://nginx.org/download"|grep 'href=".*\.zip<'|sed 's|.*href="||;s|\.zip.*|.zip|'|sort -V|tail -n 1)"&&\
+geturl "https://nginx.org/download/$GETVER">"$TMP/nginx.zip"||abort "下载失败"
+unzip -oq "$TMP/nginx.zip" -d "$TMP"||abort "解压失败"
+rm -rf /usr/share/nginx&&\
+mv -vf "$TMP/"*/ /usr/share/nginx&&\
+echo -n 'exec /usr/share/nginx/nginx "$@"'>/usr/bin/nginx||abort "安装失败";}
+
 abort_update(){ echo "
 $R! $@$O";[ "$N" -lt 10 ]&&{ let N++;download;}||abort "脚本下载失败，请检查网络，并尝试重新下载";}
 download(){ case "$N" in
