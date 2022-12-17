@@ -34,7 +34,7 @@ docker run -itPd
   -h TRSS-Zhenxun #主机名
   --name TRSS_Zhenxun #容器名
   -v ~/TRSS_Zhenxun:/root/TRSS_Zhenxun #数据映射
-  --restart=always #自启动
+  --restart always #自启动
   -p 2536:80 #端口映射
   trss:liteyuki
 ```
