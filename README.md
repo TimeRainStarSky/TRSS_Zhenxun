@@ -66,10 +66,13 @@ DIR=/Bot CMD=trss bash <(x
 - 问：无法连接到反向 WebSocket Universal 服务器
 - 答：请确认 Zhenxun 正常运行并启动了 Uvicorn WebSocket 服务器
 
+- 问：Android 初始化数据库 报错：致命错误:  无法创建共享内存段: 函数未实现
+- 答：在 Termux 中安装数据库：`bash <(curl -L gitee.com/TimeRainStarSky/TRSS_Zhenxun/raw/main/Install-Termux-PostgreSQL.sh)`
+
 - 问：address already in use
 - 答：端口被占用，请尝试停止占用进程、重启设备，或修改配置文件，更改端口
 
-- 问：open terminal failed: not a terminal
+- 问：卡在正在启动进度条
 - 答：tmux 问题，请尝试重启设备或前台启动
 
 - 问：[server exited unexpectedly]
