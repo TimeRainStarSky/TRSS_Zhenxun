@@ -1,5 +1,5 @@
 #TRSS Zhenxun MSYS2 安装脚本 作者：时雨🌌星空
-NAME=v1.0.0;VERSION=202302141
+NAME=v1.0.0;VERSION=202302142
 R="[1;31m" G="[1;32m" Y="[1;33m" C="[1;36m" B="[1;m" O="[m"
 echo "$B—————————————————————————————
 $R TRSS$Y Zhenxun$G Install$C Script$O
@@ -75,13 +75,13 @@ geturl "$URL/TimeRainStarSky/pip/raw/main/pip.pyz">"$TMP/pip.pyz"||abort "下载
 python "$TMP/pip.pyz" config set global.index-url "https://mirrors.bfsu.edu.cn/pypi/web/simple"&&
 python "$TMP/pip.pyz" config set global.extra-index-url "https://mirrors.bfsu.edu.cn/pypi/web/simple"&&
 python "$TMP/pip.pyz" install -U pip&&
-ln -vsf /usr/share/python/python/Scripts/pip /usr/bin/pip||abort "安装失败";}
+ln -vsf /usr/share/python/Scripts/pip /usr/bin/pip||abort "安装失败";}
 
 type poetry &>/dev/null||{ echo "
 $Y- 正在安装 Poetry$O
 "
 pip install -U poetry&&
-ln -vsf /usr/share/python/python/Scripts/poetry /usr/bin/poetry||abort "安装失败";}
+ln -vsf /usr/share/python/Scripts/poetry /usr/bin/poetry||abort "安装失败";}
 
 type nginx &>/dev/null||{ echo "
 $Y- 正在安装 Nginx$O
