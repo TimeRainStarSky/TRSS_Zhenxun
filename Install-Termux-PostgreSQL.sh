@@ -1,5 +1,5 @@
 #TRSS Termux PostgreSQL 安装脚本 作者：时雨🌌星空
-NAME=v1.0.0;VERSION=202301300
+NAME=v1.0.0;VERSION=202303020
 R="[1;31m" G="[1;32m" Y="[1;33m" C="[1;36m" B="[1;m" O="[m"
 echo "$B———————————————————————————————
 $R TRSS$Y Termux$G PostgreSQL$C Script$O
@@ -46,13 +46,13 @@ pkg install -y postgresql||abort "PostgreSQL 安装失败"
 echo "
 $Y- 正在初始化 PostgreSQL$O
 "
-rm -rf "$HOME/postgres"&&
-initdb -D "$HOME/postgres"&&
-pg_ctl start -D "$HOME/postgres"&&
+PGSQLDB="$HOME/postgres"
+rm -rf "$PGSQLDB"&&
+initdb -D "$PGSQLDB"||abort "PostgreSQL 初始化失败"
+pg_ctl start -D "$PGSQLDB"&&
 createdb&&
-echo "CREATE USER zhenxun WITH PASSWORD 'TimeRainStarSky';CREATE DATABASE zhenxun OWNER zhenxun">"$HOME/postgres/tmp"&&
-psql -f "$HOME/postgres/tmp"&&
-rm -rf "$HOME/postgres/tmp"&&
-pg_ctl stop -D "$HOME/postgres"||abort "PostgreSQL 初始化失败"
+psql -c "CREATE USER zhenxun WITH PASSWORD 'TimeRainStarSky'"&&
+psql -c "CREATE DATABASE zhenxun OWNER zhenxun"&&
+pg_ctl stop -D "$PGSQLDB"||abort "数据库创建失败"
 echo "
 $G- PostgreSQL 安装完成，启动命令：${C}pg_ctl start -D ~/postgres$O"

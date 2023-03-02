@@ -1,5 +1,5 @@
 #TRSS Zhenxun MSYS2 安装脚本 作者：时雨🌌星空
-NAME=v1.0.0;VERSION=202302200
+NAME=v1.0.0;VERSION=202303020
 R="[1;31m" G="[1;32m" Y="[1;33m" C="[1;36m" B="[1;m" O="[m"
 echo "$B—————————————————————————————
 $R TRSS$Y Zhenxun$G Install$C Script$O
@@ -34,6 +34,17 @@ mkdir -vp /win&&
 git_clone "https://gitee.com/TimeRainStarSky/ffmpeg-windows" /win/ffmpeg||abort "下载失败"
 mkpath /win/ffmpeg/bin||abort "安装失败";}
 
+type pg_ctl psql &>/dev/null||{ echo "
+$Y- 正在安装 PostgreSQL$O
+"
+mktmp
+URL="$(geturl "https://www.enterprisedb.com/download-postgresql-binaries"|sed -nE 's|.*"(https://sbp.enterprisedb.com/getfile.jsp\?fileid=[0-9]+)".*|\1|p'|head -n1)"
+geturl "$URL">"$TMP/pgsql.zip"||abort "下载失败"
+unzip -o "$TMP/pgsql.zip" -d "$TMP"||abort "解压失败"
+rm -rf /win/pgsql&&
+mv -vf "$TMP/"*/ /win/pgsql&&
+mkpath /win/pgsql/bin||abort "安装失败";}
+
 type python &>/dev/null||{ GETVER="3.10.9"
 echo "
 $Y- 正在安装 Python $GETVER$O
@@ -42,8 +53,8 @@ mktmp
 geturl "https://registry.npmmirror.com/-/binary/python/$GETVER/python-$GETVER-embed-amd64.zip">"$TMP/python.zip"||abort "下载失败"
 rm -rf /win/python&&
 mkdir -vp /win/python/Lib&&
-unzip -oq "$TMP/python.zip" -d /win/python&&
-unzip -oq /win/python/*.zip -d /win/python/Lib&&
+unzip -o "$TMP/python.zip" -d /win/python&&
+unzip -o /win/python/*.zip -d /win/python/Lib&&
 rm -rf /win/python/*.zip /win/python/*._pth||abort "解压失败"
 echo -n "import sys
 import io
@@ -70,7 +81,7 @@ $Y- 正在安装 Nginx$O
 mktmp
 GETVER="$(geturl "https://nginx.org/download"|grep 'href=".*\.zip<'|sed 's|.*href="||;s|\.zip.*|.zip|'|sort -V|tail -n 1)"&&
 geturl "https://nginx.org/download/$GETVER">"$TMP/nginx.zip"||abort "下载失败"
-unzip -oq "$TMP/nginx.zip" -d "$TMP"||abort "解压失败"
+unzip -o "$TMP/nginx.zip" -d "$TMP"||abort "解压失败"
 rm -rf /win/nginx&&
 mv -vf "$TMP/"*/ /win/nginx&&
 mkdir -vp /win/nginx/bin&&
