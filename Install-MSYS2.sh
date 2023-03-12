@@ -1,5 +1,5 @@
 #TRSS Zhenxun MSYS2 安装脚本 作者：时雨🌌星空
-NAME=v1.0.0;VERSION=202303120
+NAME=v1.0.0;VERSION=202303121
 R="[1;31m" G="[1;32m" Y="[1;33m" C="[1;36m" B="[1;m" O="[m"
 echo "$B—————————————————————————————
 $R TRSS$Y Zhenxun$G Install$C Script$O
@@ -37,12 +37,7 @@ mkpath /win/ffmpeg/bin||abort "安装失败";}
 type pg_ctl psql &>/dev/null||{ echo "
 $Y- 正在安装 PostgreSQL$O
 "
-mktmp
-URL="$(geturl "https://www.enterprisedb.com/download-postgresql-binaries"|sed -nE 's|.*"(https://sbp.enterprisedb.com/getfile.jsp\?fileid=[0-9]+)".*|\1|p'|head -n1)"
-geturl "$URL">"$TMP/pgsql.zip"||abort "下载失败"
-unzip -o "$TMP/pgsql.zip" -d "$TMP"||abort "解压失败"
-rm -rf /win/pgsql&&
-mv -vf "$TMP/"*/ /win/pgsql&&
+git_clone "https://gitee.com/TimeRainStarSky/pgsql-windows" /win/pgsql||abort "下载失败"
 mkpath /win/pgsql/bin||abort "安装失败";}
 
 type python &>/dev/null||{ GETVER="3.10.9"
