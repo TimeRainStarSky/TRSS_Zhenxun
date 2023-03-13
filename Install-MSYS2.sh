@@ -74,7 +74,7 @@ type nginx &>/dev/null||{ echo "
 $Y- 正在安装 Nginx$O
 "
 mktmp
-GETVER="$(geturl "https://nginx.org/download"|grep 'href=".*\.zip<'|sed 's|.*href="||;s|\.zip.*|.zip|'|sort -V|tail -n 1)"&&
+GETVER="$(geturl "https://nginx.org/download"|grep 'href=".*\.zip<'|sed 's|.*href="||;s|\.zip.*|.zip|'|sort -V|tail -n1)"&&
 geturl "https://nginx.org/download/$GETVER">"$TMP/nginx.zip"||abort "下载失败"
 unzip -o "$TMP/nginx.zip" -d "$TMP"||abort "解压失败"
 rm -rf /win/nginx&&
